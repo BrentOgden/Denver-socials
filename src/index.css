@@ -1,0 +1,38 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Montserrat:wght@600;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Open+Sans:wght@400;display=swap');
+
+@import "tailwindcss";
+
+
+/* Custom brand colors */
+:root {
+  --burnt-brown: #8A3202;
+  font-family: Lato;
+
+}
+h1,h2{
+  font-family: Playfair-Display;
+}
+
+/* Utility for burnt brown */
+.bg-burnt-brown { background-color: var(--burnt-brown); }
+.text-burnt-brown { color: var(--burnt-brown); }
+
+@layer utilities {
+  .hover\:bg-burnt-brown:hover {
+    background-color: var(--burnt-brown);
+  }
+  .hover\:text-burnt-brown:hover {
+    color: var(--burnt-brown);
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+
+section {
+  scroll-margin-top: 4rem; 
+}
+
