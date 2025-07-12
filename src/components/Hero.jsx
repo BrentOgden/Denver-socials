@@ -16,7 +16,7 @@ export default function Hero({ id = "hero" }) {
 
         {/* Content */}
         <div className="relative z-10 text-center text-white px-4 max-w-5xl">
-          <h1 className="font-playfair text-4xl md:text-6xl">
+          <h1 className="text-4xl md:text-6xl">
             Denver Socials: Where Community Meets Connection
           </h1>
           <p className="mt-4 text-lg md:text-2xl">
@@ -42,7 +42,7 @@ export default function Hero({ id = "hero" }) {
       </section>
 
       {/* Mini subscribe form, centered with a bit of top margin */}
-      <div className="flex justify-center mt-8">
+      <div className="flex justify-center mt-0">
         <SubscribeFormMini />
       </div>
     </>
