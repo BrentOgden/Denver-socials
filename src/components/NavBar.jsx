@@ -20,6 +20,7 @@ export default function Navbar() {
     const primaryBtn = 'px-4 py-2 bg-[#8A3202] text-white rounded transition-colors duration-200 hover:bg-[#8A3202]/90';
     const secondaryBtn = 'px-4 py-2 border-2 border-[#8A3202] text-[#8A3202] rounded transition-colors duration-200 hover:bg-[#8A3202] hover:text-white';
 
+
     return (
         <nav className="fixed top-0 w-full bg-white shadow-md z-50">
             {/* desktop container */}
@@ -59,7 +60,7 @@ export default function Navbar() {
                             rel="noopener noreferrer"
                             className={`${secondaryBtn} inline-flex items-center`}
                         >
-                           <SiEventbrite className="text-burnt-brown mr-2 flex-shrink-0" />
+                            <SiEventbrite className="mr-2 flex-shrink-0" />
                             <span>Eventbrite</span>
                         </a>
                     </div>

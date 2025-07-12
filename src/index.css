@@ -10,18 +10,26 @@
   font-family: Lato;
 
 }
-h1,h2{
+
+h1,
+h2 {
   font-family: Playfair-Display;
 }
 
 /* Utility for burnt brown */
-.bg-burnt-brown { background-color: var(--burnt-brown); }
-.text-burnt-brown { color: var(--burnt-brown); }
+.bg-burnt-brown {
+  background-color: var(--burnt-brown);
+}
+
+.text-burnt-brown {
+  color: var(--burnt-brown);
+}
 
 @layer utilities {
   .hover\:bg-burnt-brown:hover {
     background-color: var(--burnt-brown);
   }
+
   .hover\:text-burnt-brown:hover {
     color: var(--burnt-brown);
   }
@@ -33,6 +41,5 @@ html {
 
 
 section {
-  scroll-margin-top: 4rem; 
+  scroll-margin-top: 4rem;
 }
-

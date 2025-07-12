@@ -8,6 +8,7 @@ import SubscribeForm from '../components/SubscribeForm';
 import Footer from '../components/Footer';
 import Navbar from '../components/NavBar'
 import ImageGrid from '../components/ImageGrid';
+import ScrollToTopArrow from '../components/scrollToTopArrow';
 
 import img1 from '../assets/2025-01-31-2.jpg';
 import img2 from '../assets/2025-01-31-3.jpg';
@@ -37,6 +38,7 @@ export default function LandingLayout() {
             <EventsGrid id="events" />
             <Impact id="impact" />
             <SubscribeForm id="subscribe" />
+              <ScrollToTopArrow />
             <Footer />
         </div>
     );
