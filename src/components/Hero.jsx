@@ -27,13 +27,13 @@ export default function Hero({ id = "hero" }) {
           <div className="mt-8 flex flex-col sm:flex-row gap-3 justify-center">
             <a
               href="https://www.meetup.com/denver-socials"
-              className="px-6 py-3 bg-burnt-brown text-white font-semibold rounded animate-bounce-slow hover:bg-opacity-90"
+              className="px-6 py-3 bg-burnt-brown text-white font-semibold rounded animate-bounce-slow hover:bg-opacity-90" target="_blank"
             >
               Join Us on Meetup
             </a>
             <a
               href="https://www.eventbrite.com/o/denver-socials-94476587943"
-              className="px-6 py-3 border-2 border-white text-white font-semibold rounded animate-bounce-slow hover:bg-white hover:text-gray-900"
+              className="px-6 py-3 border-2 border-white text-white font-semibold rounded animate-bounce-slow hover:bg-white hover:text-gray-900" target="_blank"
             >
               Find Tickets on Eventbrite
             </a>
