@@ -24,6 +24,17 @@ h2 {
 .text-burnt-brown {
   color: var(--burnt-brown);
 }
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+.animate-fadeIn {
+  animation-name: fadeIn;
+  animation-fill-mode: forwards;
+  animation-iteration-count: 1;
+}
+
+
 
 @layer utilities {
   .hover\:bg-burnt-brown:hover {
