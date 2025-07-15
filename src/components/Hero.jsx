@@ -41,7 +41,7 @@ export default function Hero({ id = "hero" }) {
         </div>
       </section>
 
-      {/* Mini subscribe form, centered with a bit of top margin */}
+      
       <div className="flex justify-center mt-0">
         <SubscribeFormMini />
       </div>

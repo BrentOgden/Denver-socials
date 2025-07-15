@@ -6,7 +6,7 @@ export default function Footer() {
   return (
     <footer className="bg-gray-800 text-gray-300 py-8 px-4">
       <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-4">
-        {/* Column 1: Business info */}
+        
         <div className='flex flex-col mx-auto'>
           <h3 className="font-montserrat text-white mb-2">Denver Socials LLC</h3>
           <p>
@@ -15,7 +15,7 @@ export default function Footer() {
           </p>
         </div>
 
-        {/* Column 2: Contact details */}
+        
         <div className='flex flex-col mx-14 md:mx-auto'>
           {/* <h4 className="font-montserrat text-white mb-2 text-left">Contact</h4> */}
           <p>
@@ -25,7 +25,7 @@ export default function Footer() {
           </p>
         </div>
 
-        {/* Column 3: Social icons */}
+        
         <div className="flex flex-col md:mx-auto md:items-center items-center">
           <h4 className="text-white mt-6 md:mt-0 mb-4">Follow Us</h4>
           <div className="flex space-x-6">
