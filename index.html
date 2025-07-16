@@ -9,18 +9,65 @@
   <link rel="manifest" href="/site.webmanifest">
   <link href="/src/index.css" rel="stylesheet">
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Denver Socials</title>
+  <!-- 1. Primary SEO -->
+  <title>Denver Socials | Community Meetups & Events in Denver, CO</title>
+  <meta name="description"
+    content="Denver Socials brings Denverites together for fun meetups, local events, and community networking. Join us to explore the Mile High City’s vibrant social scene!" />
+  <link rel="canonical" href="https://denversocials.com/" />
+
+  <!-- 2. Open Graph (Facebook, LinkedIn, etc.) -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Denver Socials | Community Meetups & Events in Denver, CO" />
+  <meta property="og:description"
+    content="Denver Socials brings Denverites together for fun meetups, local events, and community networking. Join us to explore the Mile High City’s vibrant social scene!" />
+  <meta property="og:url" content="https://denversocials.com/" />
+  <meta property="og:image" content="https://denversocials.com/og-image.jpg" />
+  <!-- replace with a 1200×630 social image -->
+
+  <!-- 3. Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:site" content="@DenverSocials" /> <!-- your Twitter handle -->
+  <meta name="twitter:title" content="Denver Socials | Community Meetups & Events in Denver, CO" />
+  <meta name="twitter:description"
+    content="Denver Socials brings Denverites together for fun meetups, local events, and community networking. Join us to explore the Mile High City’s vibrant social scene!" />
+  <meta name="twitter:image" content="https://denversocials.com/twitter-image.jpg" /> <!-- 1200×600 -->
+
+  <!-- 4. Mobile & Robots -->
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="index, follow" />
+
 </head>
 
 <body>
   <div id="root"></div>
   <script type="module" src="/src/main.jsx"></script>
   <script>
-  window.REQUIRED_CODE_ERROR_MESSAGE = 'Please choose a country code';
-  /* …other i18n… */
-  var AUTOHIDE = Boolean(0);
-</script>
+    window.REQUIRED_CODE_ERROR_MESSAGE = 'Please choose a country code';
+    /* …other i18n… */
+    var AUTOHIDE = Boolean(0);
+  </script>
   <script defer src="https://sibforms.com/forms/end-form/build/main.js"></script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Denver Socials",
+  "url": "https://denversocials.com/",
+  "logo": "https://denversocials.com/assets/logonew.png",
+  "sameAs": [
+    "https://www.facebook.com/people/Denver-Socials/61560860032953/",
+    "https://twitter.com/DenverSocials",
+    "https://www.instagram.com/denversocials/"
+  ],
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "email": "DenverSocials@outlook.com",
+    "contactType": "customer support",
+    "areaServed": "US"
+  }
+}
+</script>
+
 </body>
 
 </html>
