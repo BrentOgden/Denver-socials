@@ -33,7 +33,7 @@ export default function Hero({ id = "hero" }) {
             </a>
             <a
               href="https://www.eventbrite.com/o/denver-socials-94476587943"
-              className="px-6 py-3 border-2 border-white text-white font-semibold rounded animate-bounce-slow hover:bg-white hover:text-gray-900" target="_blank"
+              className="px-6 py-3 border-2 border-white text-white font-semibold  bg-black/40 rounded animate-bounce-slow hover:bg-white hover:text-gray-900" target="_blank"
             >
               Find Tickets on Eventbrite
             </a>
