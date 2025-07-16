@@ -96,7 +96,7 @@ export default function ImageGrid({
                 : 'absolute inset-0 w-full h-full object-cover transition-none opacity-100'
 
               return (
-                <div key={idx} className="group overflow-hidden rounded-lg shadow-lg">
+                <div key={idx} className="group overflow-hidden rounded-lg shadow-xl">
                   <div className="relative w-full h-48">
                     {/* base */}
                     <img src={src} alt={alt} className={baseClasses} />

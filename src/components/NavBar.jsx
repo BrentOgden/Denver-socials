@@ -22,7 +22,7 @@ export default function Navbar() {
 
 
     return (
-        <nav className="fixed top-0 w-full bg-white shadow-md z-50 pb-2">
+        <nav className="fixed top-0 w-full bg-white z-50 pb-2">
             {/* desktop container */}
             <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="flex justify-between items-center h-22">
@@ -40,7 +40,7 @@ export default function Navbar() {
                                 key={link.name}
                                 href={link.href}
                                 className="text-gray-700 hover:text-[#8A3202] 
-                                transition-colors duration-200 font-medium"
+                                transition-colors duration-200 hover:border-b-2 font-medium"
                             >
                                 {link.name}
                             </a>

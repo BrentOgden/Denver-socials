@@ -69,7 +69,7 @@ export default function SubscribeForm({ id = 'subscribe' }) {
             required
             value={email}
             onChange={e => setEmail(e.target.value)}
-            className="flex-1 px-4 py-2 border rounded"
+            className="flex-1 px-4 py-2 border rounded shadow-lg"
           />
           <button type="submit" className="px-6 py-2 bg-[#8A3202] text-white rounded transition-colors duration-200 hover:bg-[#8A3202]/90">
             Subscribe

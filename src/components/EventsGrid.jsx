@@ -92,7 +92,7 @@ export default function EventsGrid({ id = "events" }) {
                             className="w-full h-48 object-cover transform transition-transform duration-300 group-hover:scale-110"
                         />
                         <div className="p-6">
-                            <h3 className="font-playfair text-xl mb-2">{e.title}</h3>
+                            <h3 className="font-playfair text-xl text-[#8A3202] mb-2">{e.title}</h3>
                             <p className="text-gray-700">{e.desc}</p>
                         </div>
                     </div>
