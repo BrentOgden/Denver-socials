@@ -17,7 +17,7 @@ export default function Footer() {
 
         
         <div className='flex flex-col mx-14 md:mx-auto'>
-          {/* <h4 className="font-montserrat text-white mb-2 text-left">Contact</h4> */}
+          <h3 className="font-montserrat text-white mb-2 text-left">Contact</h3>
           <p>
             Phone: <a href="tel:7208197787" className="hover:text-white">720.819.7787</a><br/>
             Email: <a href="mailto:DenverSocials@outlook.com" className="hover:text-white">DenverSocials@outlook.com</a><br/>
