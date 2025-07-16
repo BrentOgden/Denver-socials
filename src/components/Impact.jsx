@@ -14,10 +14,10 @@ export default function Impact({ id = "impact" }) {
 
       {/* content */}
       <div className="relative max-w-2xl mx-auto text-center text-white">
-        <h2 className="font-montserrat text-3xl mb-4">
+        <h2 className="font-montserrat text-3xl mb-4 text-shadow-lg/50">
           Giving Back with Every Gathering
         </h2>
-        <p className="text-lg">
+        <p className="text-lg text-shadow-lg/50">
           We believe fun and purpose can coexist. That’s why each event is an opportunity to do good—whether you're playing golf, sharing wine, or shaking hands. Denver Socials proudly donates the majority of net proceeds to local 501(c)(3) organizations doing meaningful work.
         </p>
       </div>

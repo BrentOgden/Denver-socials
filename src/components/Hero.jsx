@@ -16,10 +16,10 @@ export default function Hero({ id = "hero" }) {
 
         {/* Content */}
         <div className="relative z-10 text-center text-white px-4 max-w-5xl">
-          <h1 className="text-4xl md:text-6xl">
+          <h1 className="text-4xl md:text-6xl text-shadow-lg/50">
             Denver Socials: Where Community Meets Connection
           </h1>
-          <p className="mt-4 text-lg md:text-2xl">
+          <p className="mt-4 text-lg md:text-2xl text-shadow-lg/50">
             Curated social and networking events supporting Denver nonprofits
           </p>
 
