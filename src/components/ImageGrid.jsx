@@ -1,14 +1,17 @@
 // src/components/ImageGrid.jsx
+
 import React, { useState, useEffect } from 'react'
 import Divider from './Divider'
+import Lightbox from 'yet-another-react-lightbox'
+import 'yet-another-react-lightbox/styles.css'
 
 export default function ImageGrid({
-  images: imagesPool = [],     // full set of assets
+  images: imagesPool = [],     // array of { src, alt, caption }
   id = 'image-grid',
-  initialCount = 12,           // how many to show
-  crossfadeCount = 6,          // how many swap at once
+  initialCount = 12,
+  crossfadeCount = 6,
 }) {
-  // 1) pick 12 unique starters
+  // ─── INITIAL GRID SETUP ────────────────────────────────────────────────
   const [gridImages, setGridImages] = useState(() => {
     const arr = [...imagesPool]
     for (let i = arr.length - 1; i > 0; i--) {
@@ -18,23 +21,26 @@ export default function ImageGrid({
     return arr.slice(0, initialCount)
   })
 
-  // map of idx → newImg while swapping
+  // ─── CROSSFADE SWAP LOGIC ──────────────────────────────────────────────
   const [crossfadeMap, setCrossfadeMap] = useState({})
+  const FADE_DURATION = 1000
+  const INTERVAL      = 5000
 
-  const FADE_DURATION = 1000 // ms
-  const INTERVAL      = 5000 // ms
+  // Lightbox controls
+  const [open, setOpen]   = useState(false)
+  const [index, setIndex] = useState(0)
 
   useEffect(() => {
-    // nothing to do if pool ≤ grid
-    if (imagesPool.length <= gridImages.length) return
-
+    // don't even set up swapping if lightbox is open
     const tick = () => {
+      if (open) return                      // ◀ pause when lightbox open
+      if (imagesPool.length <= gridImages.length) return
+
       const len   = gridImages.length
-      // how many we can actually swap this tick
       const count = Math.min(crossfadeCount, len, imagesPool.length - len)
       if (count <= 0) return
 
-      // pick `count` distinct random indices 0..len-1
+      // pick random slots to swap
       const indices = Array.from({ length: len }, (_, i) => i)
       for (let i = len - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1))
@@ -42,46 +48,44 @@ export default function ImageGrid({
       }
       const slotsToSwap = indices.slice(0, count)
 
-      // build set of all currently shown srcs
+      // filter out already shown images
       const shown = new Set(gridImages.map((img) => img.src))
-
-      // filter pool down to candidates not already shown
       let candidates = imagesPool.filter((img) => !shown.has(img.src))
       // shuffle candidates
       for (let i = candidates.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1))
         ;[candidates[i], candidates[j]] = [candidates[j], candidates[i]]
       }
-
-      // take the first `count` candidates
       const replacements = candidates.slice(0, count)
 
-      // build a map idx→newImg
+      // build crossfade map
       const newMap = {}
       slotsToSwap.forEach((slotIdx, i) => {
         newMap[slotIdx] = replacements[i]
       })
 
-      // trigger all fades
       setCrossfadeMap(newMap)
-
-      // after fade duration: swap them all in, then clear the map
       setTimeout(() => {
         setGridImages((prev) => {
           const copy = [...prev]
-          for (let slotIdx of slotsToSwap) {
+          slotsToSwap.forEach((slotIdx) => {
             copy[slotIdx] = newMap[slotIdx]
-          }
+          })
           return copy
         })
+        // clear fades shortly after swap
         setTimeout(() => setCrossfadeMap({}), 50)
       }, FADE_DURATION)
     }
 
     const handle = setInterval(tick, INTERVAL)
     return () => clearInterval(handle)
-  }, [imagesPool, gridImages, crossfadeCount])
+  }, [imagesPool, gridImages, crossfadeCount, open])  // ◀ added `open`
 
+  // ─── LIGHTBOX SLIDES ──────────────────────────────────────────────────
+  const slides = imagesPool.map((img) => ({ src: img.src, title: img.caption }))
+
+  // ─── RENDER ────────────────────────────────────────────────────────────
   return (
     <>
       <section id={id} className="py-16 px-4">
@@ -89,19 +93,23 @@ export default function ImageGrid({
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
             {gridImages.map(({ src, alt, caption }, idx) => {
               const isFading = idx in crossfadeMap
-
-              // fade out only when isFading
               const baseClasses = isFading
                 ? 'absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ease-in-out opacity-0'
                 : 'absolute inset-0 w-full h-full object-cover transition-none opacity-100'
 
               return (
-                <div key={idx} className="group overflow-hidden rounded-lg shadow-xl">
+                <div
+                  key={idx}
+                  className="group relative overflow-hidden rounded-lg shadow-xl cursor-pointer"
+                  onClick={() => {
+                    const imgIndex = imagesPool.findIndex((img) => img.src === src)
+                    setIndex(imgIndex !== -1 ? imgIndex : 0)
+                    setOpen(true)
+                  }}
+                >
                   <div className="relative w-full h-48">
-                    {/* base */}
                     <img src={src} alt={alt} className={baseClasses} />
 
-                    {/* overlay if swapping */}
                     {isFading && (
                       <img
                         src={crossfadeMap[idx].src}
@@ -111,6 +119,7 @@ export default function ImageGrid({
                       />
                     )}
                   </div>
+
                   {caption && (
                     <div className="mt-2 text-center text-gray-700 transition-colors duration-200 group-hover:text-burnt-brown">
                       {caption}
@@ -122,7 +131,18 @@ export default function ImageGrid({
           </div>
         </div>
       </section>
+
       <Divider />
+
+      {open && (
+        <Lightbox
+          open={open}
+          close={() => setOpen(false)}
+          slides={slides}
+          index={index}
+          onIndexChange={setIndex}
+        />
+      )}
     </>
   )
 }
