@@ -31,40 +31,40 @@ export default function ImageGrid({
   const [index, setIndex] = useState(0)
 
   useEffect(() => {
-    // don't even set up swapping if lightbox is open
     const tick = () => {
-      if (open) return                      // ◀ pause when lightbox open
+      if (open) return                      // ◀ pause swaps while lightbox is up
       if (imagesPool.length <= gridImages.length) return
 
+      // pick random slots to swap
       const len   = gridImages.length
       const count = Math.min(crossfadeCount, len, imagesPool.length - len)
       if (count <= 0) return
 
-      // pick random slots to swap
-      const indices = Array.from({ length: len }, (_, i) => i)
+      const slots = Array.from({ length: len }, (_, i) => i)
       for (let i = len - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1))
-        ;[indices[i], indices[j]] = [indices[j], indices[i]]
+        ;[slots[i], slots[j]] = [slots[j], slots[i]]
       }
-      const slotsToSwap = indices.slice(0, count)
+      const slotsToSwap = slots.slice(0, count)
 
-      // filter out already shown images
+      // choose replacements
       const shown = new Set(gridImages.map((img) => img.src))
       let candidates = imagesPool.filter((img) => !shown.has(img.src))
-      // shuffle candidates
       for (let i = candidates.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1))
         ;[candidates[i], candidates[j]] = [candidates[j], candidates[i]]
       }
       const replacements = candidates.slice(0, count)
 
-      // build crossfade map
+      // build the fade map
       const newMap = {}
       slotsToSwap.forEach((slotIdx, i) => {
         newMap[slotIdx] = replacements[i]
       })
 
       setCrossfadeMap(newMap)
+
+      // ◀ SINGLE timeout: swap images + clear fadeMap together
       setTimeout(() => {
         setGridImages((prev) => {
           const copy = [...prev]
@@ -73,14 +73,13 @@ export default function ImageGrid({
           })
           return copy
         })
-        // clear fades shortly after swap
-        setTimeout(() => setCrossfadeMap({}), 50)
+        setCrossfadeMap({})   // clear fades immediately as the swap happens
       }, FADE_DURATION)
     }
 
     const handle = setInterval(tick, INTERVAL)
     return () => clearInterval(handle)
-  }, [imagesPool, gridImages, crossfadeCount, open])  // ◀ added `open`
+  }, [imagesPool, gridImages, crossfadeCount, open])
 
   // ─── LIGHTBOX SLIDES ──────────────────────────────────────────────────
   const slides = imagesPool.map((img) => ({ src: img.src, title: img.caption }))
@@ -89,46 +88,42 @@ export default function ImageGrid({
   return (
     <>
       <section id={id} className="py-16 px-4">
-        <div className="max-w-6xl mx-auto">
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
-            {gridImages.map(({ src, alt, caption }, idx) => {
-              const isFading = idx in crossfadeMap
-              const baseClasses = isFading
-                ? 'absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ease-in-out opacity-0'
-                : 'absolute inset-0 w-full h-full object-cover transition-none opacity-100'
+        <div className="max-w-6xl mx-auto grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
+          {gridImages.map(({ src, alt, caption }, idx) => {
+            const isFading = idx in crossfadeMap
+            const baseClasses = isFading
+              ? 'absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ease-in-out opacity-0'
+              : 'absolute inset-0 w-full h-full object-cover transition-none opacity-100'
 
-              return (
-                <div
-                  key={idx}
-                  className="group relative overflow-hidden rounded-lg shadow-xl cursor-pointer"
-                  onClick={() => {
-                    const imgIndex = imagesPool.findIndex((img) => img.src === src)
-                    setIndex(imgIndex !== -1 ? imgIndex : 0)
-                    setOpen(true)
-                  }}
-                >
-                  <div className="relative w-full h-48">
-                    <img src={src} alt={alt} className={baseClasses} />
-
-                    {isFading && (
-                      <img
-                        src={crossfadeMap[idx].src}
-                        alt={crossfadeMap[idx].alt}
-                        className="absolute inset-0 w-full h-full object-cover animate-fadeIn"
-                        style={{ animationDuration: `${FADE_DURATION}ms` }}
-                      />
-                    )}
-                  </div>
-
-                  {caption && (
-                    <div className="mt-2 text-center text-gray-700 transition-colors duration-200 group-hover:text-burnt-brown">
-                      {caption}
-                    </div>
+            return (
+              <div
+                key={idx}
+                className="group relative overflow-hidden rounded-lg shadow-xl cursor-pointer"
+                onClick={() => {
+                  const imgIndex = imagesPool.findIndex((img) => img.src === src)
+                  setIndex(imgIndex !== -1 ? imgIndex : 0)
+                  setOpen(true)
+                }}
+              >
+                <div className="relative w-full h-48">
+                  <img src={src} alt={alt} className={baseClasses} />
+                  {isFading && (
+                    <img
+                      src={crossfadeMap[idx].src}
+                      alt={crossfadeMap[idx].alt}
+                      className="absolute inset-0 w-full h-full object-cover animate-fadeIn"
+                      style={{ animationDuration: `${FADE_DURATION}ms` }}
+                    />
                   )}
                 </div>
-              )
-            })}
-          </div>
+                {caption && (
+                  <div className="mt-2 text-center text-gray-700 transition-colors duration-200 group-hover:text-burnt-brown">
+                    {caption}
+                  </div>
+                )}
+              </div>
+            )
+          })}
         </div>
       </section>
 
