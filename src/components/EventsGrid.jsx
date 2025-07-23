@@ -4,7 +4,7 @@ import Billiards from '../assets/BilliardsBusinessConnections.png';
 import PopSmoke from '../assets/PopSmokePicture.png';
 import WineWednesday from '../assets/GHFLogo2.png';
 import IRP from '../assets/IRPLogo2.png';
-import BonGreen from '../assets/BusinessOnTheGreenLogo.png';
+import BonGreen from '../assets/BusinessOnTheGreen.png';
 import pas from '../assets/pas.jpeg';
 
 const events = [
