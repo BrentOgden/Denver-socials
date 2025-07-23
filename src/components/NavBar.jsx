@@ -34,7 +34,7 @@ export default function Navbar() {
                     </div>
 
                     {/* desktop links */}
-                    <div className="hidden md:flex items-center space-x-6">
+                    <div className="hidden md:flex text-md items-center space-x-6">
                         {links.map(link => (
                             <a
                                 key={link.name}
@@ -70,7 +70,7 @@ export default function Navbar() {
                     <div className="md:hidden">
                         <button
                             onClick={() => setIsOpen(!isOpen)}
-                            className="p-2 rounded-md text-gray-700 hover:text-[#8A3202] transition-colors duration-200 focus:outline-none"
+                            className="p-2 rounded-md text-gray-700 hover:text-primary transition-colors duration-200 focus:outline-none"
                         >
                             {isOpen ? (
                                 <svg className="h-6 w-6" fill="none" stroke="currentColor">
@@ -97,7 +97,7 @@ export default function Navbar() {
                                 key={link.name}
                                 href={link.href}
                                 onClick={() => setIsOpen(false)}
-                                className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-[#8A3202] hover:bg-gray-100 transition-colors duration-200"
+                                className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-primary hover:bg-gray-100 transition-colors duration-200"
                             >
                                 {link.name}
                             </a>

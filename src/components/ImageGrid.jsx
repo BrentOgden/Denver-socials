@@ -117,7 +117,7 @@ export default function ImageGrid({
                   )}
                 </div>
                 {caption && (
-                  <div className="mt-2 text-center text-gray-700 transition-colors duration-200 group-hover:text-burnt-brown">
+                  <div className="mt-2 text-center text-gray-700 transition-colors duration-200 group-hover:text-primary">
                     {caption}
                   </div>
                 )}

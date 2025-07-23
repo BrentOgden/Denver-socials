@@ -27,7 +27,7 @@ export default function Hero({ id = "hero" }) {
           <div className="mt-8 flex flex-col sm:flex-row gap-3 justify-center">
             <a
               href="https://www.meetup.com/denver-socials"
-              className="px-6 py-3 bg-burnt-brown text-white font-semibold rounded animate-bounce-slow hover:bg-opacity-90" target="_blank"
+              className="px-6 py-3 bg-[#8A3202] text-white font-semibold rounded animate-bounce-slow hover:bg-[#8A3202]/90" target="_blank"
             >
               Join Us on Meetup
             </a>

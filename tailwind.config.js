@@ -5,7 +5,8 @@ export const content = [
 export const theme = {
     extend: {
         colors: {
-            "burnt-brown": "#8A3202",
+            "primary": "#8A3202",
+            
         },
         animation: {
             "bounce-slow": "bounce 2s infinite",

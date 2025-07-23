@@ -6,23 +6,25 @@
 
 /* Custom brand colors */
 :root {
-  --burnt-brown: #8A3202;
-  font-family: Lato;
+  --primary: #8A3202;
 
 }
-
+html {
+  font-family: "Lato", sans-serif;
+  scroll-behavior: smooth;
+}
 h1,
 h2 {
-  font-family: Playfair-Display;
+  font-family: "Montserrat", sans-serif;
 }
 
 /* Utility for burnt brown */
-.bg-burnt-brown {
-  background-color: var(--burnt-brown);
+.bg-primary {
+  background-color: var(--primary);
 }
 
-.text-burnt-brown {
-  color: var(--burnt-brown);
+.text-primary {
+  color: var(--primary);
 }
 @keyframes fadeIn {
   from { opacity: 0; }
@@ -37,12 +39,12 @@ h2 {
 
 
 @layer utilities {
-  .hover\:bg-burnt-brown:hover {
-    background-color: var(--burnt-brown);
+  .hover\:bg-primary:hover {
+    background-color: var(--primary);
   }
 
-  .hover\:text-burnt-brown:hover {
-    color: var(--burnt-brown);
+  .hover\:text-primary:hover {
+    color: var(--primary);
   }
 }
 

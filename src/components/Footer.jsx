@@ -20,7 +20,7 @@ export default function Footer() {
           <h3 className="font-montserrat text-white mb-2 text-left">Contact</h3>
           <p>
             Phone: <a href="tel:7208197787" className="hover:text-white">720.819.7787</a><br/>
-            Email: <a href="mailto:DenverSocials@outlook.com" className="hover:text-white">DenverSocials@outlook.com</a><br/>
+            Email: <a href="mailto:info@denversocials.com" className="hover:text-white">info@denversocials.com</a><br/>
             Web: <a href="https://denversocials.com" className="hover:text-white">denversocials.com</a>
           </p>
         </div>
